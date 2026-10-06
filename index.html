@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Riku Itou - Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- ヘッダー・ナビゲーション -->
+    <header id="header">
+        <div class="header-container">
+            <h1 class="logo"><a href="#home">Riku's Portfolio</a></h1>
+            <nav class="nav-menu">
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#works">Works</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="hamburger">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- ヒーローセクション -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h2>伊藤 吏玖</h2>
+            <p>Web Engineer / Creator</p>
+            <a href="#contact" class="btn-primary">お問い合わせ</a>
+        </div>
+    </section>
+
+    <!-- プロフィールセクション -->
+    <section id="about" class="section">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>現在、学生として最新の技術を学びながら、開発・デザインのスキルを磨いています。</p>
+                    <p>インフラからフロントエンドの実装、デザインツールの活用まで幅広くカバーし、クラウドワークスやWantedlyなどを通じて、価値あるプロダクト制作に貢献したいと考えています。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- スキルセクション -->
+    <section id="skills" class="section bg-light">
+        <div class="container">
+            <h2 class="section-title">Skills</h2>
+            <div class="skills-grid">
+                <!-- スキルカード1 -->
+                <div class="skill-card">
+                    <h3>Dev & Infrastructure</h3>
+                    <p>Docker / Google Cloud Platform (GCP) / Cursor</p>
+                    <p class="skill-desc">モダンな開発環境の構築やクラウドインフラの基礎知識を持ち、効率的な開発を実践しています。</p>
+                </div>
+                <!-- スキルカード2 -->
+                <div class="skill-card">
+                    <h3>Front-end</h3>
+                    <p>HTML5 / CSS3 / JavaScript</p>
+                    <p class="skill-desc">レスポンシブデザインを意識した、ユーザーにとって使いやすいUI/UXの実装が可能です。</p>
+                </div>
+                <!-- スキルカード3 -->
+                <div class="skill-card">
+                    <h3>Design & Tools</h3>
+                    <p>Canva Pro / Fotor</p>
+                    <p class="skill-desc">デザインツールを活用したバナー作成や画像編集、ビジュアル素材の制作に対応できます。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 制作物セクション -->
+    <section id="works" class="section">
+        <div class="container">
+            <h2 class="section-title">Works</h2>
+            <div class="works-grid">
+                <!-- 制作物カード (画像は適宜差し替えてください) -->
+                <div class="work-card">
+                    <div class="work-image" style="background-color: #ddd;">
+                        <!-- <img src="work1.jpg" alt="プロジェクト1"> -->
+                        <span style="display:flex; justify-content:center; align-items:center; height:200px; color:#666;">No Image</span>
+                    </div>
+                    <div class="work-info">
+                        <h3>プロジェクト名 1</h3>
+                        <p>クラウドワークスで受注したLPコーディング案件。レスポンシブ対応とアニメーション実装を担当。</p>
+                    </div>
+                </div>
+                <div class="work-card">
+                    <div class="work-image" style="background-color: #ddd;">
+                        <span style="display:flex; justify-content:center; align-items:center; height:200px; color:#666;">No Image</span>
+                    </div>
+                    <div class="work-info">
+                        <h3>プロジェクト名 2</h3>
+                        <p>架空のコーポレートサイトのデザイン・実装。Canvaを用いた素材作成から一貫して担当。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- コンタクトセクション -->
+    <section id="contact" class="section bg-light">
+        <div class="container">
+            <h2 class="section-title">Contact</h2>
+            <p class="contact-text">お仕事のご依頼やご相談などは、以下のボタンからメールにてお気軽にお問い合わせください。</p>
+            <div class="contact-btn-wrapper">
+                <a href="mailto:your_email@example.com" class="btn-primary">メールを送る</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- フッター -->
+    <footer>
+        <p>&copy; 2026 Riku Itou. All Rights Reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
