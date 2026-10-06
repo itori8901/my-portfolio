@@ -241,7 +241,7 @@ footer {
     font-size: 0.9rem;
 }
 
-/* --- レスポンシブデザイン (スマホ用) --- */
+/* レスポンシブデザイン */
 @media (max-width: 768px) {
     .hamburger {
         display: flex;
