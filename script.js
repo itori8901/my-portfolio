@@ -32,10 +32,8 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  /* ===== お問い合わせフォーム =====
-     サーバーなしで動くよう、入力内容でメールアプリを起動します。
-     ★ 下の MY_EMAIL を自分のアドレスに変更してください */
-  const MY_EMAIL = "your-email@example.com";
+  /* ===== お問い合わせフォーム ===== */
+  const MY_EMAIL = "itoriku0814@yahoo.co.jp";
   const form = document.getElementById("contactForm");
 
   const showError = (field, msg) => {
