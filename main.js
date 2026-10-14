@@ -1,71 +1,65 @@
+// GSAP ScrollTriggerの登録
+gsap.registerPlugin(ScrollTrigger);
+
 document.addEventListener("DOMContentLoaded", () => {
-  /* ===== スマホメニューの開閉 ===== */
-  const menuBtn = document.getElementById("menuBtn");
-  const nav = document.getElementById("nav");
 
-  const closeMenu = () => {
-    nav.classList.remove("is-open");
-    menuBtn.setAttribute("aria-expanded", "false");
-    menuBtn.setAttribute("aria-label", "メニューを開く");
-  };
-
-  menuBtn.addEventListener("click", () => {
-    const open = nav.classList.toggle("is-open");
-    menuBtn.setAttribute("aria-expanded", String(open));
-    menuBtn.setAttribute("aria-label", open ? "メニューを閉じる" : "メニューを開く");
-  });
-  nav.querySelectorAll("a").forEach((a) => a.addEventListener("click", closeMenu));
-  document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeMenu(); });
-
-  /* ===== 制作実績の絞り込み ===== */
-  const filterBtns = document.querySelectorAll(".filter__btn");
-  const works = document.querySelectorAll(".work");
-
-  filterBtns.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      filterBtns.forEach((b) => b.classList.remove("is-active"));
-      btn.classList.add("is-active");
-      const type = btn.dataset.filter;
-      works.forEach((w) => {
-        w.hidden = !(type === "all" || w.dataset.category === type);
-      });
+  // 1. ヒーローテキストのアニメーション（文字単位での出現）
+  const heroTitle = document.querySelector('.js-text-reveal');
+  if (heroTitle) {
+    // テキストを取得し、1文字ずつspanタグで囲む
+    const text = heroTitle.textContent;
+    heroTitle.innerHTML = '';
+    
+    text.split('').forEach(char => {
+      if (char === ' ') {
+        heroTitle.innerHTML += ' ';
+      } else {
+        // overflow: hidden がかかった親要素の中で translateY をかけて隠しておく
+        heroTitle.innerHTML += `<span class="char">${char}</span>`;
+      }
     });
-  });
 
-  /* ===== お問い合わせフォーム ===== */
-  const MY_EMAIL = "itoriku0814@yahoo.co.jp";
-  const form = document.getElementById("contactForm");
+    // 文字を下からスライドイン
+    gsap.to('.hero-title .char', {
+      y: '0%',          // 元の位置に戻す
+      duration: 1.2,
+      stagger: 0.05,    // 0.05秒間隔で順番に出現
+      ease: 'power4.out',
+      delay: 0.2        // 読み込み直後に少し待つ
+    });
+  }
 
-  const showError = (field, msg) => {
-    field.classList.toggle("is-invalid", Boolean(msg));
-    field.setAttribute("aria-invalid", Boolean(msg));
-    field.parentElement.querySelector(".error").textContent = msg;
-  };
+  // 2. ナビゲーションのフェードダウン
+  gsap.fromTo('.js-fade-down', 
+    { y: -20, opacity: 0 },
+    { y: 0, opacity: 1, duration: 1, ease: 'power3.out', delay: 1.2 }
+  );
 
-  form.addEventListener("submit", (e) => {
-    e.preventDefault();
-    const { name, email, message } = form.elements;
-    let ok = true;
+  // 3. スクロール時のフェードアップアニメーション
+  const fadeUpElements = document.querySelectorAll('.js-fade-up');
+  
+  fadeUpElements.forEach((el) => {
+    // HTMLの data-delay 属性を取得（指定がなければ0）
+    const delay = el.getAttribute('data-delay') || 0;
 
-    if (!name.value.trim()) { showError(name, "お名前を入力してください。"); ok = false; }
-    else showError(name, "");
-
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim())) {
-      showError(email, "メールアドレスの形式で入力してください。"); ok = false;
-    } else showError(email, "");
-
-    if (!message.value.trim()) { showError(message, "ご相談内容を入力してください。"); ok = false; }
-    else showError(message, "");
-
-    if (!ok) return;
-
-    const subject = encodeURIComponent(`【ポートフォリオ】${name.value.trim()}様よりお問い合わせ`);
-    const body = encodeURIComponent(
-      `お名前: ${name.value.trim()}\nメール: ${email.value.trim()}\n\n${message.value.trim()}`
+    gsap.fromTo(el, 
+      { 
+        y: 40, 
+        opacity: 0 
+      },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 1.2,
+        ease: 'power3.out',
+        delay: parseFloat(delay),
+        scrollTrigger: {
+          trigger: el,
+          start: 'top 85%', // 要素が画面の下から15%の位置に来たら発火
+          toggleActions: 'play none none none', // 1回だけ再生
+        }
+      }
     );
-    window.location.href = `mailto:${MY_EMAIL}?subject=${subject}&body=${body}`;
   });
 
-  /* ===== フッターの年 ===== */
-  document.getElementById("year").textContent = new Date().getFullYear();
 });
